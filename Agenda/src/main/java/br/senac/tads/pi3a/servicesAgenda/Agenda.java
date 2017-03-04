@@ -13,9 +13,9 @@ import java.util.Date;
  */
 public class Agenda {
 
+ 
     
-    
-    
+    private int id;
     public String nome;
     public Date dataNasc;
     public String telefone;
@@ -91,6 +91,21 @@ public class Agenda {
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
+ 
+       /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
     
 }
 
