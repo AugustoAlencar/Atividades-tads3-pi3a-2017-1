@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.senac.tads.pi3.agenda.connection;
+package conection;
 
-//import java.sql.Connection;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  *
  * @author augusto.palencar1
  */
-public class Connection {
+public class ConnectionDB {
     
     
     private static final String DRIVER = "con.mysql.jdbc.Driver";
@@ -38,21 +38,21 @@ public class Connection {
         }
     }    
     public void closeConnection(){
-//        try {
+        try {
             
-             con.closeConnection();
+             con.close();
              
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(null," Erro ao Fechar Conexão com BAnco de Dados: \n " + ex.getMessage());
-//        }
-//    }    
-//    public void executaSql(String sql){
-//        try {
-//            stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-//            rs = stmt.executeQuery(sql);
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(null," Erro Executa Sql: \n " + ex.getMessage());
-//        }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null," Erro ao Fechar Conexão com BAnco de Dados: \n " + ex.getMessage());
+        }
+    }    
+    public void executaSql(String sql){
+        try {
+            stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            rs = stmt.executeQuery(sql);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null," Erro Executa Sql: \n " + ex.getMessage());
+        }
     }
 }
     

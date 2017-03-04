@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.senac.tads.pi3a.view;
+package view;
 
-import br.senac.tads.pi3a.servicesAgenda.Agenda;
+import servicesAgenda.Agenda;
+import servicesAgenda.ServicoAgenda;
 
 /**
  *
@@ -41,7 +42,7 @@ public class AgendaContatos extends javax.swing.JFrame {
         jtelefone = new javax.swing.JTextField();
         jemail = new javax.swing.JTextField();
         JbuttonCadastrar = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBoxSexo = new javax.swing.JComboBox<String>();
         jLabel1 = new javax.swing.JLabel();
         panelListar = new javax.swing.JPanel();
         tabela = new javax.swing.JScrollPane();
@@ -78,7 +79,7 @@ public class AgendaContatos extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Masculino", "Feminino" }));
+        jComboBoxSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione:", "Masculino", "Feminino" }));
 
         jLabel1.setText("Sexo:");
 
@@ -103,7 +104,7 @@ public class AgendaContatos extends javax.swing.JFrame {
                         .addComponent(jtelefone)
                         .addComponent(jemail))
                     .addGroup(cadastrarLayout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBoxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(140, 140, 140)
                         .addComponent(JbuttonCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -129,7 +130,7 @@ public class AgendaContatos extends javax.swing.JFrame {
                     .addComponent(jemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addGroup(cadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(JbuttonCadastrar))
                 .addContainerGap())
@@ -237,10 +238,26 @@ public class AgendaContatos extends javax.swing.JFrame {
 
     private void JbuttonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbuttonCadastrarActionPerformed
         // TODO add your handling code here:
+        try{
         agenda.setNome((String) jnome.getText());
-        agenda.setDataNasc(null);
+        agenda.setDataNasc((String) jdata_nasc.getText());
         agenda.setTelefone((String) jtelefone.getText());
         agenda.setEmail((String) jemail.getText());
+        agenda.setSexo((String)jComboBoxSexo.getSelectedItem());
+        ServicoAgenda.cadastrarAgenda(agenda);
+            
+        }catch(Exception e){
+            
+        }
+        
+        jnome.setText("");
+        jdata_nasc.setText("");
+        jtelefone.setText("");
+        jemail.setText("");
+        jComboBoxSexo.setSelectedItem("Selecione:");
+        
+        
+        
         
     }//GEN-LAST:event_JbuttonCadastrarActionPerformed
 
@@ -295,7 +312,7 @@ public class AgendaContatos extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBoxSexo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton jbuttonListar;
     private javax.swing.JTextField jdata_nasc;

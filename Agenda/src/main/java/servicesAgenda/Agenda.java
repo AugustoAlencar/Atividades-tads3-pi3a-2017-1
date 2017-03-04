@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.senac.tads.pi3a.servicesAgenda;
+package servicesAgenda;
 
 import java.util.Date;
 
@@ -17,7 +17,7 @@ public class Agenda {
     
     private int id;
     public String nome;
-    public Date dataNasc;
+    public String dataNasc;
     public String telefone;
     public String email;
     private String sexo;
@@ -39,14 +39,14 @@ public class Agenda {
     /**
      * @return the dataNasc
      */
-    public Date getDataNasc() {
+    public String getDataNasc() {
         return dataNasc;
     }
 
     /**
      * @param dataNasc the dataNasc to set
      */
-    public void setDataNasc(Date dataNasc) {
+    public void setDataNasc(String dataNasc) {
         this.dataNasc = dataNasc;
     }
 

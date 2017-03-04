@@ -88,7 +88,7 @@
                           <Component id="jemail" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Component id="jComboBox1" min="-2" pref="155" max="-2" attributes="0"/>
+                          <Component id="jComboBoxSexo" min="-2" pref="155" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
                           <Component id="JbuttonCadastrar" pref="123" max="32767" attributes="0"/>
                       </Group>
@@ -122,7 +122,7 @@
                   </Group>
                   <EmptySpace pref="8" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboBoxSexo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="JbuttonCadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -171,11 +171,11 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JbuttonCadastrarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="jComboBoxSexo">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="3">
-                <StringItem index="0" value="Selecione"/>
+                <StringItem index="0" value="Selecione:"/>
                 <StringItem index="1" value="Masculino"/>
                 <StringItem index="2" value="Feminino"/>
               </StringArray>

@@ -1,4 +1,4 @@
-package br.senac.tads.pi3a.exceptions;
+package exceptions;
 
 //Indica uma exceção direta com a fonte de dados
 public class DataSourceException extends Exception {
