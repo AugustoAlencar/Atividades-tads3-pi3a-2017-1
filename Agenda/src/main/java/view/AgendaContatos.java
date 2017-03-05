@@ -10,6 +10,7 @@ import conection.ConnectionDB;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import servicesAgenda.Agenda;
 import servicesAgenda.ServicoAgenda;
@@ -23,6 +24,7 @@ public class AgendaContatos extends javax.swing.JFrame {
     ConnectionDB con = new ConnectionDB();
     Contatos_crud contatos = new Contatos_crud();
     Agenda agenda = new Agenda();
+    Editar editar = null;
 
     /**
      * Creates new form Agenda
@@ -156,6 +158,11 @@ public class AgendaContatos extends javax.swing.JFrame {
         nomeBuscar.setText("Nome:");
 
         jButton1.setText("Excluir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Editar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -166,10 +173,7 @@ public class AgendaContatos extends javax.swing.JFrame {
 
         tabela_contatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Id", "Nome", "Data Nasc", "Telefone", "E-mail", "Sexo"
@@ -292,6 +296,12 @@ public class AgendaContatos extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        if (editar == null || !editar.isDisplayable()) {
+            editar = new Editar();            
+            editar.setVisible(true);           
+        }
+        editar.toFront();
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jbuttonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbuttonListarActionPerformed
@@ -312,6 +322,21 @@ public class AgendaContatos extends javax.swing.JFrame {
         }
         Jbuscar.setText("");
     }//GEN-LAST:event_jbuttonListarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int row = tabela_contatos.getSelectedRow();         
+        int id = (Integer) tabela_contatos.getValueAt(row, 0);       
+        int resposta = JOptionPane.showConfirmDialog(rootPane, "Deseja realmente excluir o Contato?");
+        if (resposta == JOptionPane.YES_OPTION) {
+           agenda.setId(id);
+             try {
+                 contatos.excluirUsuario(agenda);
+             } catch (Exception ex) {
+                 Logger.getLogger(AgendaContatos.class.getName()).log(Level.SEVERE, null, ex);
+             }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -374,4 +399,8 @@ public class AgendaContatos extends javax.swing.JFrame {
     private javax.swing.JTable tabela_contatos;
     private javax.swing.JLabel telefone;
     // End of variables declaration//GEN-END:variables
+
+    private void openFrameInCenter(Editar editar) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

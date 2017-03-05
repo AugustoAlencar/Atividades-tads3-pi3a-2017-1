@@ -6,13 +6,15 @@
 package agenda_crud;
 
 import conection.ConnectionDB;
+import java.awt.Dimension;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.management.RuntimeErrorException;
+import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -210,4 +212,7 @@ public class Contatos_crud {
 
         }
     }
+
+
 }
+
