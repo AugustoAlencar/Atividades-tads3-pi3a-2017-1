@@ -116,16 +116,16 @@ public class Agenda {
     /**
      * @return the dataCad
      */
-    public Date getDataCad() {
+    public Timestamp getDataCad() {
         return dataCad;
     }
 
     /**
      * @param dataCad the dataCad to set
      */
-    public void setDataCad(Date dataCad) {
-        this.setDataCad(dataCad);
-    }
+//    public void setDataCad(Date dataCad) {
+//        this.setDataCad(dataCad);
+//    }
 
     /**
      * @param dataCad the dataCad to set

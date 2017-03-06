@@ -105,6 +105,7 @@ public class Contatos_crud {
         return agendaContatos;
     }
 
+    
     public Agenda Atualizar(Agenda agenda, int id) {
         con.Connection();
         try {
@@ -114,13 +115,11 @@ public class Contatos_crud {
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
                 JOptionPane.showMessageDialog(null, "Contato atualizado");
-
                 agenda.setNome(rs.getString("nome"));
                 agenda.setDataNasc(rs.getString("data_Nasc"));
                 agenda.setTelefone(rs.getString("telefone"));
                 agenda.setEmail(rs.getString("email"));
                 agenda.setSexo(rs.getString("sexo"));
-
                 pst.execute();
 
             } else {
@@ -145,8 +144,7 @@ public class Contatos_crud {
             pst.setString(2, agenda.getDataNasc());
             pst.setString(3, agenda.getTelefone());
             pst.setString(4, agenda.getEmail());
-            pst.setString(5, agenda.getSexo());
-            //pst.setInt(6, agenda.setId(id));
+            pst.setString(5, agenda.getSexo());            
             pst.execute();
 
             JOptionPane.showMessageDialog(null, " Dados Salvos com Sucesso!");

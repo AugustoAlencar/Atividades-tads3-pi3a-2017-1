@@ -21,20 +21,19 @@ public class ServicoAgenda {
 
         //Realização de validações de negócio
         if (agenda == null) {
-            throw new AgendaException("Não foi informado uma Agenda");
+            throw new AgendaException("Agenda vazia");
         }
         if (agenda.getNome() == null || "".equals(agenda.getNome())) {
             throw new AgendaException("É necessário informar o nome");
         }
-
         if (agenda.getDataNasc() == null || "".equals(agenda.getDataNasc())) {
             throw new AgendaException("É necessário informar a data de nascimento");
         }
         if (agenda.getEmail() == null || "".equals(agenda.getEmail())) {
-            throw new AgendaException("É necessário informar a cor");
+            throw new AgendaException("É necessário informar o email");
         }
         if (agenda.getTelefone() == null || "".equals(agenda.getTelefone())) {
-            throw new AgendaException("É necessário informar a quantidade");
+            throw new AgendaException("É necessário informar o telefone");
         }
 
         if (agenda.getSexo() == null || agenda.getSexo().equals("Selecione:")) {
