@@ -5,6 +5,7 @@
  */
 package servicesAgenda;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -20,7 +21,9 @@ public class Agenda {
     public String dataNasc;
     public String telefone;
     public String email;
-    private String sexo;
+    public String sexo;
+    private Timestamp dataCad;
+    
 
     /**
      * @return the nome
@@ -108,6 +111,27 @@ public class Agenda {
 
     public int getId(String select_maxCod_Cliente1) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * @return the dataCad
+     */
+    public Date getDataCad() {
+        return dataCad;
+    }
+
+    /**
+     * @param dataCad the dataCad to set
+     */
+    public void setDataCad(Date dataCad) {
+        this.setDataCad(dataCad);
+    }
+
+    /**
+     * @param dataCad the dataCad to set
+     */
+    public void setDataCad(Timestamp dataCad) {
+        this.dataCad = dataCad;
     }
     
 }

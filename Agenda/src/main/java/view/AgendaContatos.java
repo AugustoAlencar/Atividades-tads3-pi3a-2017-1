@@ -8,6 +8,7 @@ package view;
 import agenda_crud.Contatos_crud;
 import conection.ConnectionDB;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
@@ -116,7 +117,7 @@ public class AgendaContatos extends javax.swing.JFrame {
                     .addGroup(cadastrarLayout.createSequentialGroup()
                         .addComponent(jComboBoxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(140, 140, 140)
-                        .addComponent(JbuttonCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)))
+                        .addComponent(JbuttonCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         cadastrarLayout.setVerticalGroup(
@@ -176,14 +177,14 @@ public class AgendaContatos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Nome", "Data Nasc", "Telefone", "E-mail", "Sexo"
+                "Id", "Nome", "Data Nasc", "Telefone", "E-mail", "Sexo", "Data e hora"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, false
+                false, false, false, false, true, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -202,20 +203,21 @@ public class AgendaContatos extends javax.swing.JFrame {
             panelListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelListarLayout.createSequentialGroup()
                 .addGroup(panelListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelListarLayout.createSequentialGroup()
-                        .addGap(287, 287, 287)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panelListarLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelListarLayout.createSequentialGroup()
-                        .addGap(77, 77, 77)
+                        .addGap(182, 182, 182)
                         .addComponent(nomeBuscar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Jbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbuttonListar, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)))
+                        .addComponent(jbuttonListar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)
         );
         panelListarLayout.setVerticalGroup(
             panelListarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,6 +236,11 @@ public class AgendaContatos extends javax.swing.JFrame {
         );
 
         jButton3.setText("Sair");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -242,19 +249,22 @@ public class AgendaContatos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton3)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(113, 113, 113)
+                .addComponent(cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(17, 17, 17)
                 .addComponent(cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
                 .addComponent(panelListar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton3)
@@ -270,12 +280,14 @@ public class AgendaContatos extends javax.swing.JFrame {
 
     private void JbuttonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbuttonCadastrarActionPerformed
         // TODO add your handling code here:
+        Timestamp dataDeHoje = new Timestamp(System.currentTimeMillis());      
         try {
             agenda.setNome((String) jnome.getText());
             agenda.setDataNasc((String) jdata_nasc.getText());
             agenda.setTelefone((String) jtelefone.getText());
             agenda.setEmail((String) jemail.getText());
             agenda.setSexo((String) jComboBoxSexo.getSelectedItem());
+            agenda.setDataCad(dataDeHoje);             
             ServicoAgenda.cadastrarAgenda(agenda);
 
         } catch (Exception e) {
@@ -295,12 +307,34 @@ public class AgendaContatos extends javax.swing.JFrame {
     }//GEN-LAST:event_JbuttonCadastrarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        if (editar == null || !editar.isDisplayable()) {
+        // TODO add your handling code here:       
+        int row = tabela_contatos.getSelectedRow();
+        if(row >=0){
+        String nome = (String) tabela_contatos.getValueAt(row, 1);         
+           agenda.setNome(nome);
+           
+//             try {
+//                 contatos.retornarContatosNome(nome);
+//             } catch (Exception ex) {
+//                 Logger.getLogger(AgendaContatos.class.getName()).log(Level.SEVERE, null, ex);
+//             }
+             
+             if (editar == null || !editar.isDisplayable()) {
             editar = new Editar();            
-            editar.setVisible(true);           
-        }
+            editar.setVisible(true); 
+            try {
+                editar.preencherCampos(nome, agenda);
+            } catch (SQLException ex) {
+                Logger.getLogger(AgendaContatos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }             
         editar.toFront();
+        }
+        
+        else
+            JOptionPane.showMessageDialog(rootPane, "Selecione uma linha");
+        
+        
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -337,6 +371,11 @@ public class AgendaContatos extends javax.swing.JFrame {
              }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

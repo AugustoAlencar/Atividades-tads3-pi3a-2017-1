@@ -21,7 +21,7 @@ public class ServicoAgenda {
 
         //Realização de validações de negócio
         if (agenda == null) {
-            throw new AgendaException("Não foi informado um Agenda");
+            throw new AgendaException("Não foi informado uma Agenda");
         }
         if (agenda.getNome() == null || "".equals(agenda.getNome())) {
             throw new AgendaException("É necessário informar o nome");

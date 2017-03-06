@@ -5,13 +5,31 @@
  */
 package view;
 
+import agenda_crud.Contatos_crud;
+import java.sql.SQLException;
+import servicesAgenda.Agenda;
+
 /**
  *
  * @author augusto.palencar1
  */
 public class Editar extends javax.swing.JFrame {
 
-    /**
+    Agenda agenda = new Agenda();
+    Contatos_crud contatos = new Contatos_crud();
+    
+    
+    public void preencherCampos(String nome, Agenda agenda) throws SQLException{       
+        jnome.setText(agenda.getNome());
+        jdata_nasc.setText(agenda.getDataNasc());
+        jtelefone.setText(agenda.getTelefone());
+        jemail.setText(agenda.getEmail());
+        jComboBox1.setActionCommand(agenda.getSexo());
+        
+        
+    }
+    
+     /**
      * Creates new form Editar
      */
     public Editar() {
@@ -36,9 +54,10 @@ public class Editar extends javax.swing.JFrame {
         jdata_nasc = new javax.swing.JTextField();
         jtelefone = new javax.swing.JTextField();
         jemail = new javax.swing.JTextField();
-        JbuttonCadastrar = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<String>();
         jLabel1 = new javax.swing.JLabel();
+        JbuttonCadastrar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,16 +71,15 @@ public class Editar extends javax.swing.JFrame {
 
         email.setText("E-mail:");
 
-        jdata_nasc.addActionListener(new java.awt.event.ActionListener() {
+        jnome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jdata_nascActionPerformed(evt);
+                jnomeActionPerformed(evt);
             }
         });
 
-        JbuttonCadastrar.setText("Salvar");
-        JbuttonCadastrar.addActionListener(new java.awt.event.ActionListener() {
+        jdata_nasc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JbuttonCadastrarActionPerformed(evt);
+                jdata_nascActionPerformed(evt);
             }
         });
 
@@ -89,11 +107,8 @@ public class Editar extends javax.swing.JFrame {
                         .addComponent(jdata_nasc)
                         .addComponent(jtelefone)
                         .addComponent(jemail))
-                    .addGroup(EditarLayout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(140, 140, 140)
-                        .addComponent(JbuttonCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
         EditarLayout.setVerticalGroup(
             EditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,21 +129,40 @@ public class Editar extends javax.swing.JFrame {
                 .addGroup(EditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(email)
                     .addComponent(jemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(EditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(JbuttonCadastrar))
+                    .addComponent(jLabel1))
                 .addContainerGap())
         );
+
+        JbuttonCadastrar.setText("Salvar");
+        JbuttonCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbuttonCadastrarActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Cancelar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(JbuttonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -136,7 +170,11 @@ public class Editar extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(Editar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JbuttonCadastrar)
+                    .addComponent(jButton1))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -154,6 +192,15 @@ public class Editar extends javax.swing.JFrame {
 //        agenda.setEmail((String) jemail.getText());
 
     }//GEN-LAST:event_JbuttonCadastrarActionPerformed
+
+    private void jnomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jnomeActionPerformed
+        // TODO add your handling code here:        
+    }//GEN-LAST:event_jnomeActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -195,6 +242,7 @@ public class Editar extends javax.swing.JFrame {
     private javax.swing.JButton JbuttonCadastrar;
     private javax.swing.JLabel data_nasc;
     private javax.swing.JLabel email;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jdata_nasc;

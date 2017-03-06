@@ -7,9 +7,12 @@ package agenda_crud;
 
 import conection.ConnectionDB;
 import java.awt.Dimension;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.management.RuntimeErrorException;
@@ -25,19 +28,18 @@ public class Contatos_crud {
     ConnectionDB con = new ConnectionDB();
 
     public void cadastrarContatos(Agenda agenda) {
-
+        Timestamp dataDeHoje = new Timestamp(System.currentTimeMillis());        
         con.Connection();
         try {
             PreparedStatement pst = con.con.prepareStatement("INSERT INTO usuarios (nome,data_Nasc, "
-                    + "telefone,email,sexo) VALUES(?,?,?,?,?)");
+                    + "telefone,email,sexo,data_Cad) VALUES(?,?,?,?,?,?)");
 
-            //pst.setInt(1, agenda.getId());
             pst.setString(1, agenda.getNome());
             pst.setString(2, agenda.getDataNasc());
             pst.setString(3, agenda.getTelefone());
             pst.setString(4, agenda.getEmail());
-            pst.setString(5, agenda.getSexo());
-            //pst.setDate(7, java.sql.Date.valueOf());
+            pst.setString(5, agenda.getSexo());            
+            pst.setTimestamp(6, dataDeHoje);            
             pst.execute();
 
             JOptionPane.showMessageDialog(null, " Dados Salvos com Sucesso!");
@@ -184,7 +186,8 @@ public class Contatos_crud {
                     agenda.getDataNasc(),
                     agenda.getTelefone(),
                     agenda.getEmail(),
-                    agenda.getSexo(),});
+                    agenda.getSexo(),
+                    agenda.getDataCad()});
                 flag = false;
                 break;
             }
@@ -208,7 +211,8 @@ public class Contatos_crud {
                 agenda.getDataNasc(),
                 agenda.getTelefone(),
                 agenda.getEmail(),
-                agenda.getSexo(),});
+                agenda.getSexo(),
+                agenda.getDataCad()});
 
         }
     }
